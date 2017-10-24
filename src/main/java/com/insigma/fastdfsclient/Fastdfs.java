@@ -53,7 +53,27 @@ public class Fastdfs{
 	/**
 	 * 文件上传
 	 * @param byteFile
-	 * @param ext_file
+	 * @param ext_file 文件类型如jpg、doc
+	 * @return
+	 * @throws MyException
+	 * @throws IOException
+	 */
+	public String uploadFile(byte []  byteFile,String ext_file) throws MyException,IOException{
+		//利用字节流上传文件  
+		StringBuffer sbPath=new StringBuffer();
+        String[] strings = storageClient.upload_file(byteFile, ext_file, null);  
+        for (String string : strings) {  
+            sbPath.append("/"+string);  
+        }
+        // 全路径  
+        System.out.println(sbPath);
+        return sbPath.toString();
+	}
+	
+	/**
+	 * 文件上传
+	 * @param filepath 文件全路径
+	 * @param ext_file 文件类型如jpg、doc
 	 * @return
 	 * @throws MyException
 	 * @throws IOException
